@@ -1,0 +1,19 @@
+{
+  "name": "Ludum-Dare-entries-2-Blog",
+  "version": "1.0.0",
+  "description": "Scrape ludum dare site and create blog post from array of entrants",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AlexBezuska/Ludum-Dare-entries-2-Blog.git"
+  },
+  "author": "Alex Bezuska <abezuska@gmail.com> (http://alexbezuska.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "request": "^2.74.0"
+  }
+}

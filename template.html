@@ -1,0 +1,71 @@
+<style>
+.game {
+  font-family: sans-serif;
+  margin: 15px;
+  border: 1px solid #f0f0f0;
+  padding: 0px 20px 20px 20px;
+}
+.game a.game-title {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+}
+.game a.game-title h2 {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.game .type-by-author{
+  padding: 0 10px;
+}
+.game .screenshots{
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.game .screenshots:after{
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.game a.screenshot{
+  display: inline-block;
+  float: left;
+  margin: 5px 10px;
+}
+.game a.screenshot img{
+  width: 180px;
+  height: 140px;
+}
+.game .description{
+  padding: 10px;
+}
+.game .comments{
+  padding: 0 10px;
+}
+</style>
+
+{{#each this}}
+<div class="game">
+    <a class="game-title" href='{{url}}' target='_blank'><h2>"{{title}}"</h2></a>
+
+      <p class="type-by-author">{{type}} by {{author}}</p>
+
+      <div class="screenshots">
+        {{#each screenshots}}
+        <a class="screenshot" href='{{this.full}}' target='_blank'>
+          <img src='{{this.thumb}}'/>
+        </a>
+        {{/each}}
+      </div>
+
+      <p class="description">{{{description}}}</p>
+
+      <p class="comments">Comments on ludumdare.com:
+        <a  href='{{url}}' target='_blank'>{{comments}}</a>
+      </p>
+
+</div>
+{{/each}}
