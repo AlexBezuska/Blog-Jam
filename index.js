@@ -1,8 +1,8 @@
 
-var fs = require('fs');
-var request = require('request');
-var cheerio = require('cheerio');
-var handlebars = require('handlebars');
+var fs = require("fs");
+var request = require("request");
+var cheerio = require("cheerio");
+var handlebars = require("handlebars");
 
 // urls of the 'Louisville Makes Games' community's LD37 games!
 urls = [
@@ -76,26 +76,27 @@ for (var i = 0; i < urls.length; i++) {
 
   var ldGet = {
     title : function ($) {
-      return $('#compo-body').find("h2").first().text();
+      return $("#compo-body").find("h2").first().text();
     },
     author : function ($) {
-      return $('#compo-body').find("a[href*='author/']").first().text();
+      return $("#compo-body").find("a[href*='author/']").first().text();
     },
     type : function ($) {
-      return $('#compo-body').find("a[href*='author/']").first().next("i").text();
+      return $("#compo-body").find("a[href*='author/']").first().next("i").text();
     },
     description : function ($) {
-      return replaceAll($('#compo-body').find(".shot-nav").next("p").text(), "\r", "</br>");
+      return replaceAll($(".shot-nav").next("p").text(), "\r", "</br>");
     },
     commentCount : function ($) {
-      return $('#compo-body').find(".comment").length;
+      return $(".comment").length;
     },
     screenshots : function ($) {
       var array = [];
-      if($('#compo-body').find(".sn-img")){
-        $('#compo-body').find(".sn-img").each(function( index ) {
+      var snimg = $(".sn-img");
+      if(snimg){
+        snimg.each(function( index ) {
           array.push( {
-            full : $(this).attr("src").replace('-crop-180-140.jpg', ''),
+            full : $(this).attr("src").replace("-crop-180-140.jpg", ""),
             thumb : $(this).attr("src")
           });
         });}
