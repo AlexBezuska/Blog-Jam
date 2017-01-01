@@ -1,51 +1,4 @@
-<style>
-.game {
-  font-family: sans-serif;
-  margin: 15px;
-  border: 1px solid #f0f0f0;
-  padding: 0px 20px 20px 20px;
-}
-.game a.game-title {
-  text-decoration: none;
-  color: black;
-  display: inline-block;
-}
-.game a.game-title h2 {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
-.game .type-by-author{
-  padding: 0 10px;
-}
-.game .screenshots{
-  width: 100%;
-  display: block;
-  position: relative;
-}
-.game .screenshots:after{
-  content: ".";
-  visibility: hidden;
-  display: block;
-  height: 0;
-  clear: both;
-}
-.game a.screenshot{
-  display: inline-block;
-  float: left;
-  margin: 5px 10px;
-}
-.game a.screenshot img{
-  width: 180px;
-  height: 140px;
-}
-.game .description{
-  padding: 10px;
-}
-.game .comments{
-  padding: 0 10px;
-}
-</style>
+<p>Check out all of the games our local community in Louisville created for Ludum Dare 37! Ludum Dare is a global game jam where people from around the world form teams and create brand new games in 48hours!</p>
 
 {{#each this}}
 <div class="game">
@@ -53,19 +6,25 @@
 
       <p class="type-by-author">{{type}} by {{author}}</p>
 
-      <div class="screenshots">
-        {{#each screenshots}}
-        <a class="screenshot" href='{{this.full}}' target='_blank'>
-          <img src='{{this.thumb}}'/>
-        </a>
-        {{/each}}
+      <div class="container-fluid">
+        <div class="row">
+          {{#each screenshots}}
+          <a class="col-sm-6 col-md-3 pull-left" href='{{this.full}}' target='_blank'>
+            <img src='{{this.thumb}}'/>
+          </a>
+          {{/each}}
+        </div>
       </div>
 
-      <p class="description">{{{description}}}</p>
+      <p class="description text-left">{{{description}}}</p>
 
-      <p class="comments">Comments on ludumdare.com:
+      <a class="btn btn-success" href="{url}">Play {{title}}</a>
+
+      <!-- <p class="comments">Comments on ludumdare.com:
         <a  href='{{url}}' target='_blank'>{{comments}}</a>
-      </p>
+      </p> -->
 
 </div>
+<hr>
+<br/>
 {{/each}}
