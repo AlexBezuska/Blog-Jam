@@ -7,6 +7,7 @@
 This is a tool intended to help #gamedev communities and game dev spaces like ours ([Warp Zone Louisville](http://warpzonelouisville.com)) to easily show off the awesome games made by our community each time we participate in a game jam. The tool takes a provided list of game page urls and pulls out the title, author, screenshots, and description, and creates an html file that can be copied into a blog.
 
 Example of finished output html:
+
 ![Community Game Jam Blogpost Generator example](/tutorial/images/example.png?raw=true "Community Game Jam Blogpost Generator example")
 
 ## How to use:
