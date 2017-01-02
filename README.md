@@ -10,6 +10,8 @@ Example of finished output html (using the provided `bootstrap.html` template):
 
 ![](/tutorial/images/example.png)
 
+View the actual blog post made with this utility here: [LD37 at Warp Zone Louisville](http://louisvillemakesgames.org/2017/01/01/our-ludum-dare-37-games/)
+
 ## How to use:
 
 ### Overview:
