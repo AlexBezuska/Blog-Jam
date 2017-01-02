@@ -22,7 +22,7 @@ var config = {
     "alpha" - games will be in alphabetical order by title
   */
   ordering : "alpha",
-  template : "./templates/ludumdare-bootstrap.html",
+  template : "./templates/bootstrap.html",
   outputFile : "./output/blog-post.html"
 };
 

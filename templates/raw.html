@@ -1,0 +1,37 @@
+<p>Check out all of the games our community made in the latest game jam!</p>
+
+{{#each this}}
+  <div>
+
+    {{#if title}}
+      <a href='{{url}}'><h2>"{{title}}"</h2></a>
+    {{/if}}
+
+    {{#if author}}
+      <p>{{#if type}}{{type}} by {{/if}}{{author}}</p>
+    {{/if}}
+
+    {{#if screenshots}}
+      <div>
+        {{#each screenshots}}
+        <a href='{{this.full}}'>
+          <img src='{{this.thumb}}'/>
+        </a>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if description}}
+      <p>{{{description}}}</p>
+    {{/if}}
+
+    {{#if title}}
+      <a href="{{url}}">Play {{title}}</a>
+    {{/if}}
+
+    {{#if comments}}
+      <p class="comments">Comments: <a href='{{url}}'>{{comments}}</a></p>
+    {{/if}}
+
+  </div>
+{{/each}}
