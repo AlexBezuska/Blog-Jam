@@ -25,6 +25,7 @@ I have two included templates `ludumdare-bootstrap.html` (if your blog has boots
 
 **Note for WordPress users:**
 When copying html into a blog post, WordPress loves to do things like insert `<br/>` tags and automatically put things in paragraphs, this can really jack up the formatting of the post. To address this I really recommend you use the free plugin [Raw HTML by Janis Elsts](https://wordpress.org/plugins/raw-html/) which allows you to check boxes to disable all of those settings for each post, example:
+
 ![Recommended WordPress Raw HTML settings](/tutorial/images/wp-raw-html.png?raw=true "Recommended WordPress Raw HTML settings")
 
 
