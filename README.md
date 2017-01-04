@@ -44,14 +44,18 @@ When copying html into a blog post, WordPress loves to do things like insert `<b
 
 ### `config.json` help
 
-* **"jamUrl"** - <string> - Necessary for ratings template, pulls in total number of participants, example: `"http://ludumdare.com/compo/ludum-dare-37/"`
-* **"urls"** - <array of strings> - Currently this program only works with ludumdare.com game pages, mix and match jams if you like! Example: `"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387"` (Don't mix multiple jams with the ratings it won't work!)
-* **"ordering"** - <string>
+* **"jamUrl"** - (string) - Necessary for ratings template, pulls in total number of participants, example: `"http://ludumdare.com/compo/ludum-dare-37/"`
+
+* **"urls"** - (array of strings) - Currently this program only works with ludumdare.com game pages, mix and match jams if you like! Example: `"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387"` (Don't mix multiple jams with the ratings it won't work!)
+
+* **"ordering"** - (string)
     * `"default"` - Games will be presented in order of the urls in the array
     * `"alpha"` - Games will be in alphabetical order by title
-* **"template"** - <string> - Current blog options: `"./templates/bootstrap.html"`, `"./templates/minimal-styling.html"`, `"./templates/raw.html"`
+
+* **"template"** - (string) - Current blog options: `"./templates/bootstrap.html"`, `"./templates/minimal-styling.html"`, `"./templates/raw.html"`
   And a *new ratings graph for ldjam:* `"./templates/ratings.html"`
-* **"outputFile"** - <string> - example: "./output/blog-post.html"
+
+* **"outputFile"** - (string) - example: "./output/blog-post.html"
 
 
 
