@@ -1,17 +1,17 @@
 {
 	"jamUrl": "http://ludumdare.com/compo/ludum-dare-37/",
 	"urls": [
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=35711",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=40673",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=57618",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=58120",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=58187",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=63943",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=64869",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=8310",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=90468",
-    "http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=92205"
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=35711",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=40673",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=57618",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=58120",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=58187",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=63943",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=64869",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=8310",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=90468",
+		"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=92205"
 	],
 	"ordering": "alpha",
 	"template": "./templates/bootstrap.html",

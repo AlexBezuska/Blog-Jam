@@ -44,10 +44,15 @@ When copying html into a blog post, WordPress loves to do things like insert `<b
 
 ### `config.json` help
 
-* `"urls"` - currently this program only works with ludumdare.com game pages
+* "jamUrl"` - Necessary for ratings template, pulls in total number of participants, example: "http://ludumdare.com/compo/ludum-dare-37/"
+* `"urls"` - Currently this program only works with ludumdare.com game pages, mix and match jams if you like! (Don't mix multiple jams with the ratings it won't work!)
 * `"ordering"`
-  * `"default"` - games will be presented in order of the urls in the array
-  * `"alpha"` - games will be in alphabetical order by title
+    * `"default"` - Games will be presented in order of the urls in the array
+    * `"alpha"` - Games will be in alphabetical order by title
+* `"template"` - Current blog options: `"./templates/bootstrap.html"`, `"./templates/minimal-styling.html"`, `"./templates/raw.html"`
+  **New ratings graph for ldjam** `"./templates/ratings.html"`
+* `"outputFile"` - example: "./output/blog-post.html"
+
 
 
 ## Contributing
