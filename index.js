@@ -15,7 +15,7 @@ var totalEntriesJam = undefined;
 
 requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile);
 
-function requestJamMetadata (config, getGamePages, getGamePage, generateHtml) {
+function requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile) {
   if (config.jamUrl.indexOf("ludumdare.com")){
     rp(config.jamUrl + "/?action=preview&etype=open")
     .then( function (htmlString) {
@@ -27,7 +27,7 @@ function requestJamMetadata (config, getGamePages, getGamePage, generateHtml) {
       totalEntriesCompo = ldGet.entries(cheerio.load(htmlString), "Compo");
       console.log("Compo entries", totalEntriesCompo);
     }).then( function () {
-      getGamePages(config, getGamePage, generateHtml);
+      requestGamePages(config, requestGamePage, generateOutputFile);
     })
     .catch(err => console.log);
   } else {
@@ -35,13 +35,13 @@ function requestJamMetadata (config, getGamePages, getGamePage, generateHtml) {
   }
 }
 
-function requestGamePages(config, getGamePage, generateHtml){
+function requestGamePages(config, requestGamePage, generateOutputFile){
   var promises = [];
   for (var i = 0; i < config.urls.length; i++) {
-    promises.push( getGamePage(config, i, config.urls[i], generateHtml) );
+    promises.push( requestGamePage(config, i, config.urls[i], generateOutputFile) );
   }
   return Promise.all(promises).then((games) => {
-    generateHtml(games, config);
+    generateOutputFile(games, config);
   });
 }
 

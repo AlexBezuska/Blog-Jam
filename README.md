@@ -15,14 +15,21 @@ View the actual blog post made with this utility here: [LD37 at Warp Zone Louisv
 ## How to use:
 
 ### Overview:
-I have two included templates `bootstrap.html` (if your blog has bootstrap) and `minimal-styling.html` or `raw.html` (which includes some minimal css) to get you started. Create your own by duplicating an existing template. This project uses [request](https://www.npmjs.com/package/request), and [cheerio](https://www.npmjs.com/package/cheerio) to scrape data from game jam websites (currently only ludumdare.com).
+ Included templates `bootstrap.html` (if your blog has bootstrap) and `minimal-styling.html` or `raw.html` (which includes some minimal css) to get you started. Create your own by duplicating an existing template.
+
+*new*
+
+New template type for *Ludum Dare Ratings graphs* has been added, try it out by choosing the `ratings.html` template!
+![](/tutorial/images/ratings.png)
+
+This project uses [request](https://www.npmjs.com/package/request), and [cheerio](https://www.npmjs.com/package/cheerio) to scrape data from game jam websites (currently only ludumdare.com).
 
 ### Instructions:
 
 * Install node (instructions for your OS here: https://nodejs.org/en/)
 * Clone this repository or download the zip
-* Duplicate `config.sample.js` and name it `config.json`
-* Open `config.json` in your text editor and replace the jamURL and game urls your own (currently only ludumdare.com urls work). (see `config.json` help below for help)
+* Duplicate `config.sample.json` and name it `config.json`
+* Open `config.json` in your text editor and replace the `"jamURL"` and game `"urls"` your own (currently only ludumdare.com urls work). (see `config.json` help below for help)
 * Navigate to this project in your terminal
 * Run the program using `node index.js`
 * You will notice a file added to the `./output` directory called `blog-post.html` (or whatever you named the `outputFile` in config)
@@ -37,8 +44,8 @@ When copying html into a blog post, WordPress loves to do things like insert `<b
 
 ### `config.json` help
 
-* `urls` - currently this program only works with ludumdare.com game pages
-* `ordering`
+* `"urls"` - currently this program only works with ludumdare.com game pages
+* `"ordering"`
   * `"default"` - games will be presented in order of the urls in the array
   * `"alpha"` - games will be in alphabetical order by title
 
@@ -51,12 +58,12 @@ Check the Github issues for ways to help that I already have on my radar, but he
 
 ## Versioning
 
-I would like to use SemVer but I need to research how to do that a bit more.
+SemVer, see `CHANGELOG.md`.
 
 ## Authors
 
 * **[Alex Bezuska](https://github.com/alexbezuska)** - *Initial work*
-* Shout out to [Barry Rowe](https://github.com/Barryrowe) for a lot of in person help on the project
+* Shout out to [Barry Rowe](https://github.com/Barryrowe) for a lot of in-person help on the project
 
 See also the list of [contributors](https://github.com/AlexBezuska/Ludum-Dare-entries-2-Blog/contributors) who participated in this project.
 
