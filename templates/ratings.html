@@ -1,0 +1,136 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style>
+
+body {
+background: #222 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAFVBMVEUqKiopKSkoKCgjIyMuLi4kJCQtLS0dJckpAAAAO0lEQVR42iXLAQoAUQhCQSvr/kfe910jHIikElsl5qVFa1iE5f0Pom/CNZdbNM6756lQ41NInMfuFPgAHVEAlGk4lvIAAAAASUVORK5CYII=") !important;
+margin: 0 auto;
+font-family: sans-serif, Helvetica;
+color: white;
+}
+
+.module{
+  box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+  display: block;
+  margin: 15px 0;
+  padding: 10px 15px 45px 15px !important;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  height: 400px;
+}
+.game{
+
+
+}
+
+.barLabel{
+  font-size: 12px;
+  color: #a9a9a9;
+  margin: 0 0 4px 0;
+}
+
+/* Progress bars by Catalin Rosu @catalinred
+http://red-team-design.com/dist/uploads/2011/11/css3-slick-progress-bars-demo.html#
+*/
+
+.progress-bar {
+  text-align: left;
+  position: relative;
+  display: block;
+  background-color: #1a1a1a;
+  height: 8px;
+  padding: 1px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+}
+
+.progress-bar span {
+  display: inline-block;
+  height: 100%;
+  background-color: #777;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+  transition: width .4s ease-in-out;
+}
+
+.blue span {
+  background-color: #34c2e3;
+}
+
+.orange span {
+  background-color: #fecf23;
+  background-image: linear-gradient(top, #fecf23, #fd9215);
+}
+
+.green span {
+  background-color: #a5df41;
+  background-image: linear-gradient(top, #a5df41, #4ca916);
+}
+
+.stripes span {
+  background-size: 30px 30px;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,transparent 75%, transparent);
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+
+@-moz-keyframes animate-stripes {
+  0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+.alert.alert-success.top{
+  max-width: 400px;
+  margin: 30px auto;
+}
+</style>
+
+<div class="container-fluid">
+
+    <div class='alert alert-success top'> Green bars = top 20 percentile for category.</div>
+
+  <div class="row">
+    {{#each this}}
+    <div class="game col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="module">
+
+        {{#if title}}
+        <a class="game-title" href='{{url}}' target='_blank'><strong>"{{title}}"</strong></a>
+        {{/if}}
+
+        {{#if author}}
+        <p><a href="{{authorLink}}" target='_blank' class="type-by-author">{{#if type}}{{type}} by {{/if}}{{author}}</a></p>
+        {{/if}}
+
+        {{#if ratings}}
+        <div class="ratings">
+          {{#each ratings}}
+            {{#if score}}
+              <div class="barLabel {{type}}">{{type}}: {{{score}}} / {{total}} </div>
+                {{#if bar}}
+                  <div class="progress-bar {{color}} stripes">
+                    <span style="width: {{percent}}%"></span>
+                  </div>
+                {{/if}}
+            {{/if}}
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+
+    {{/each}}
+  </div>
+
+  <footer>
+    <p>Created using <a href="https://github.com/AlexBezuska/Community-Game-Jam-Blogpost-Generator" target="_blank">Community Game Jam Blogpost Generator</a> by <a href="https://github.com/AlexBezuska" target="_blank">Alex Bezuska</a></p>
+    <p>This project is licensed under the MIT License, Fork it on <a href="https://github.com/AlexBezuska/Community-Game-Jam-Blogpost-Generator" target="_blank">GitHub</a> </p>
+  </footer>
+</div>
+
+

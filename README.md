@@ -19,7 +19,8 @@ I have two included templates `bootstrap.html` (if your blog has bootstrap) and 
 
 * Install node (instructions for your OS here: https://nodejs.org/en/)
 * Clone this repository or download the zip
-* Open `index.js` in your text editor and replace the urls in the config object at the top with your own (currently only ludumdare.com urls work).
+* Duplicate `config.sample.js` and name it `config.json`
+* Open `config.json` in your text editor and replace the jamURL and game urls your own (currently only ludumdare.com urls work). (see `config.json` help below for help)
 * Navigate to this project in your terminal
 * Run the program using `node index.js`
 * You will notice a file added to the `./output` directory called `blog-post.html` (or whatever you named the `outputFile` in config)
@@ -30,6 +31,14 @@ I have two included templates `bootstrap.html` (if your blog has bootstrap) and 
 When copying html into a blog post, WordPress loves to do things like insert `<br/>` tags and automatically put things in paragraphs, this can really jack up the formatting of the post. To address this I really recommend you use the free plugin [Raw HTML by Janis Elsts](https://wordpress.org/plugins/raw-html/) which allows you to check boxes to disable all of those settings for each post, example:
 
 ![](/tutorial/images/wp-raw-html.png)
+
+
+### `config.json` help
+
+* `urls` - currently this program only works with ludumdare.com game pages
+* `ordering`
+  * `"default"` - games will be presented in order of the urls in the array
+  * `"alpha"` - games will be in alphabetical order by title
 
 
 ## Contributing
@@ -45,6 +54,7 @@ I would like to use SemVer but I need to research how to do that a bit more.
 ## Authors
 
 * **[Alex Bezuska](https://github.com/alexbezuska)** - *Initial work*
+* Shout out to [Barry Rowe](https://github.com/Barryrowe) for a lot of in person help on the project
 
 See also the list of [contributors](https://github.com/AlexBezuska/Ludum-Dare-entries-2-Blog/contributors) who participated in this project.
 

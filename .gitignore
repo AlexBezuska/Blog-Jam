@@ -6,5 +6,7 @@ npm-debug.log*
 # Dependency directories
 node_modules
 
+config.json
 
 output/blog-post.html
+output/test*
