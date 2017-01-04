@@ -7,7 +7,13 @@ var rp = require('request-promise');
 var cheerio = require("cheerio");
 var handlebars = require("handlebars");
 
+var supportedJams = [
+  "ludumdare.com",
+  "globalgamejam.org",
+  "itch.io/jam"
+];
 var ldGet = require("./lib/ldGet.js");
+var itchGet = require("./lib/itchGet.js");
 var ggjGet = require("./lib/ggjGet.js");
 
 var totalEntriesCompo = undefined;
@@ -16,7 +22,8 @@ var totalEntriesJam = undefined;
 requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile);
 
 function requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile) {
-  if (config.jamUrl.indexOf("ludumdare.com")){
+// ludumdare.com
+  if (config.jamUrl.indexOf("ludumdare.com") > -1){
     rp(config.jamUrl + "/?action=preview&etype=open")
     .then( function (htmlString) {
       totalEntriesJam = ldGet.entries(cheerio.load(htmlString), "Jam");
@@ -30,7 +37,23 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
       requestGamePages(config, requestGamePage, generateOutputFile);
     })
     .catch(err => console.log);
-  } else {
+  }
+
+// itch.io/jam
+  else if (config.jamUrl.indexOf("itch.io/jam/") > -1){
+    rp(config.jamUrl)
+    .then( function (htmlString) {
+      totalEntriesJam = itchGet.entries(cheerio.load(htmlString));
+      console.log("Jam entries: ", totalEntriesJam);
+    })
+    .then( function () {
+      requestGamePages(config, requestGamePage, generateOutputFile);
+    })
+    .catch(err => console.log);
+  }
+
+// bad url
+  else {
     console.log("jam type not supported yet, or jamUrl not set in config");
   }
 }
@@ -52,7 +75,7 @@ function requestGamePage(config, i, currentUrl) {
         console.log(error);
         resolve({title: "Something went wrong..."});
       }
-      var jamType = whatJamIsThis(config.urls[i]);
+      var jamType = whatJamIsThis(config.urls[i], supportedJams);
       niceTerminalOutput(i, config.urls, jamType);
       resolve( buildJamGame(jamType, config, i, body) );
     });
@@ -80,6 +103,9 @@ function buildJamGame(jamType, config, i, body){
     case "ldjam.com":
     jam = ldNewGet;
     break;
+    case "itch.io/jam":
+    jam = itchGet;
+    break;
     case "globalgamejam.org":
     jam = ggjGet;
     break;
@@ -89,12 +115,16 @@ function buildJamGame(jamType, config, i, body){
   game.title = jam.title($);
   game.author = jam.author($);
   game.authorLink = jam.authorLink($);
-  game.description = jam.description($);
   game.screenshots = jam.screenshots($);
   if(jamType === "ludumdare.com") {
+    game.description = jam.description($);
     game.type = jam.type($);
     game.ratings = jam.ratings($, totalEntriesJam, totalEntriesCompo);
     game.comments = jam.commentCount($);
+  }
+  if(jamType === "itch.io/jam"){
+    game.cover = jam.cover($);
+    game.submissionTime = jam.submissionTime($);
   }
   return game;
 }
@@ -113,14 +143,14 @@ function sortArrayObjects(array, objProp){
   });
 }
 
-function whatJamIsThis (url) {
-  if (url.indexOf("ludumdare.com") > -1){
-    return "ludumdare.com";
-  } else if (url.indexOf("globalgamejam.org") > -1){
-    return "globalgamejam.org";
-  } else{
-    return "INVALID URL";
-  }
+function whatJamIsThis (url, supportedJams) {
+  return supportedJams[supportedJams.map(function (thing) {
+    return contains(url, thing);
+  }).indexOf(true)];
+}
+
+function contains(string, thingToFind){
+  return string.indexOf(thingToFind) > -1;
 }
 
 function msgForType (type) {
@@ -128,6 +158,8 @@ function msgForType (type) {
     return "\"This is a ludumdare.com system, I know this.\" - Lex Murphy";
   } else if (type === "globalgamejam.org"){
     return "\"This is a globalgamejam.org system, I know this.\" - Lex Murphy";
+  } else if (type === "itch.io/jam"){
+    return "\"This is a itch.io/jam system, I know this.\" - Lex Murphy";
   } else{
     return "URL not recognized by Community Game Jam Blogpost Generator...";
   }
