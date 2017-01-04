@@ -16,6 +16,12 @@ var ldGet = require("./lib/ldGet.js");
 var itchGet = require("./lib/itchGet.js");
 var ggjGet = require("./lib/ggjGet.js");
 
+var messages = {
+  jamFail : "jam type not supported yet, or jamUrl not set in config",
+  urlFail : "\nERROR: \"{{url}}\" is not recognized as a valid jam game url...\n",
+  urlSuccess : "\"This is a {{jamType}} system, I know this.\" - Lex Murphy"
+};
+
 var totalEntriesCompo = undefined;
 var totalEntriesJam = undefined;
 
@@ -54,7 +60,7 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
 
 // bad url
   else {
-    console.log("jam type not supported yet, or jamUrl not set in config");
+    console.log(messages.jamFail);
   }
 }
 
@@ -76,7 +82,7 @@ function requestGamePage(config, i, currentUrl) {
         resolve({title: "Something went wrong..."});
       }
       var jamType = whatJamIsThis(config.urls[i], supportedJams);
-      niceTerminalOutput(i, config.urls, jamType);
+      niceTerminalOutput(i, config.urls, supportedJams);
       resolve( buildJamGame(jamType, config, i, body) );
     });
   });
@@ -145,26 +151,23 @@ function sortArrayObjects(array, objProp){
 
 function whatJamIsThis (url, supportedJams) {
   return supportedJams[supportedJams.map(function (thing) {
-    return contains(url, thing);
+    return contains(thing, url);
   }).indexOf(true)];
 }
 
-function contains(string, thingToFind){
-  return string.indexOf(thingToFind) > -1;
+function contains(needle, haystack){
+  return (haystack.indexOf(needle) > -1);
 }
 
-function msgForType (type) {
-  if (type === "ludumdare.com"){
-    return "\"This is a ludumdare.com system, I know this.\" - Lex Murphy";
-  } else if (type === "globalgamejam.org"){
-    return "\"This is a globalgamejam.org system, I know this.\" - Lex Murphy";
-  } else if (type === "itch.io/jam"){
-    return "\"This is a itch.io/jam system, I know this.\" - Lex Murphy";
-  } else{
-    return "URL not recognized by Community Game Jam Blogpost Generator...";
+function msgForType (url, supportedJams) {
+  var jamType = whatJamIsThis(url, supportedJams);
+  if (contains(jamType, supportedJams)){
+    return messages.urlSuccess.replace("{{jamType}}", jamType);
+  } else {
+    return messages.urlFail.replace("{{url}}", url);
   }
 }
 
-function niceTerminalOutput(i, configUrls, jamType){
-  console.log("\n -- processing", (i + 1) + "/" + configUrls.length, "-- \n", configUrls[i], "\n", msgForType(jamType));
+function niceTerminalOutput(i, configUrls, supportedJams){
+  console.log("\n -- processing", (i + 1) + "/" + configUrls.length, "-- \n", configUrls[i], "\n", msgForType(configUrls[i], supportedJams));
 }
