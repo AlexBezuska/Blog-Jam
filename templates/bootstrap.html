@@ -7,11 +7,15 @@
       <a class="game-title" href='{{url}}' target='_blank'><h2>"{{title}}"</h2></a>
     {{/if}}
 
-    {{#if type}}{{type}} entry by: {{/if}}
+    <br/>
+    <p>{{#if type}}{{type}} entry {{/if}}by:
 
-    {{#each authors}}
-      <a href="{{this.link}}" class="type-by-author">{{this.name}}</a>
+      {{#each authors}}
+    <a href="{{this.link}}" class="type-by-author">{{this.name}}</a>
     {{/each}}
+    <br/>
+    <p>
+
 
     {{#if featuredImage}}
         <a class="featuredImage" href="{{featuredImage}}" target="_blank">

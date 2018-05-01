@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.3.4]
+### Changed
+- minor styling change to bootstrap template
+
 
 ## [0.3.3]
 ### Fixed
