@@ -8,5 +8,7 @@ node_modules
 
 config.json
 
-output/blog-post.html
-output/test*
+output/*
+!output/.gitkeep
+temp/*
+!temp/.gitkeep 

@@ -76,6 +76,11 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
     .catch(err => console.log);
   }
 
+  // Global Game Jam
+    else if (config.jamUrl.indexOf("globalgamejam.org") > -1){
+      requestGamePages(config, requestGamePage, generateOutputFile);
+    }
+
 // itch.io/jam
   else if (config.jamUrl.indexOf("itch.io/jam/") > -1){
     rp(config.jamUrl)
@@ -150,9 +155,10 @@ function buildJamGame(jamType, config, i, body){
   var game = {};
   game.url = config.urls[i];
   game.title = jam.title($);
+    if(jamType === "ludumdare.com" || jamType === "ldjam.com") {
   game.authors = jam.authors($);
   game.screenshots = jam.screenshots($);
-  if(jamType === "ludumdare.com" || jamType === "ldjam.com") {
+
     game.description = jam.description($);
     game.type = jam.type($);
     game.ratings = jam.ratings($, totalEntriesJam, totalEntriesCompo);
@@ -209,7 +215,7 @@ function getPageHTML(url, fileName, callback){
     var browser = await puppeteer.launch({ headless: true });
     var page = await browser.newPage();
     await page.goto(url, {});
-  
+
     await page.waitFor(3000);
     var html = await page.content();
     fs.writeFile(fileName, html, () => {
