@@ -56,9 +56,11 @@
       <a class="game-title" href='{{url}}' target='_blank'><h2>"{{title}}"</h2></a>
     {{/if}}
 
-    {{#if author}}
-      <p class="type-by-author">{{#if type}}{{type}} by {{/if}}{{author}}</p>
-    {{/if}}
+    {{#if type}}{{type}} entry by: {{/if}}
+
+    {{#each authors}}
+      <a href="{{this.link}}" class="type-by-author">{{this.name}}</a>
+    {{/each}}
 
     {{#if screenshots}}
       <div class="screenshots">

@@ -1,11 +1,13 @@
 var config = require("./config.json");
 
 /* Application */
-var fs = require("fs");
+var puppeteer = require('puppeteer');
+var fs = require('fs');
 var request = require("request");
 var rp = require('request-promise');
 var cheerio = require("cheerio");
 var handlebars = require("handlebars");
+var checklist = {};
 
 var supportedJams = [
   "ldjam.com",
@@ -33,17 +35,28 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
 
   // ldjam.com
     if (config.jamUrl.indexOf("ldjam.com") > -1){
-      rp(config.jamUrl)
-      .then( function (htmlString) {
-        console.log(htmlString);
-        submissions = ldjamGet.submissions(cheerio.load(htmlString));
-        console.log("Jam entries", submissions);
-        //return rp(config.jamUrl);
-      })
-      // .then( function () {
-      //   requestGamePages(config, requestGamePage, generateOutputFile);
-      // })
-      .catch(err => console.log);
+      var games = [];
+      getPageHTML(config.jamUrl, "./temp/jampage.html", function(){
+        var htmlString = fs.readFileSync("./temp/jampage.html");
+        totalEntriesJam = ldjamGet.entries(cheerio.load(htmlString), "Jam");
+        console.log("Jam entries", totalEntriesJam);
+
+        totalEntriesCompo = ldjamGet.entries(cheerio.load(htmlString), "Compo");
+        console.log("Compo entries", totalEntriesCompo);
+
+        for (var i = 0; i < config.urls.length; i++){
+          getPageHTML(config.urls[i], "./temp/"+ i +".html", function(){
+            for (var i = 0; i < config.urls.length; i++){
+              var body = fs.readFileSync("./temp/"+ i +".html");
+              games.push(buildJamGame("ldjam.com", config, i, body));
+              if (games.length == config.urls.length){
+                generateOutputFile(games, config);
+              }
+            }
+          });
+        }
+      });
+
     }
 
 // ludumdare.com
@@ -125,7 +138,7 @@ function buildJamGame(jamType, config, i, body){
     jam = ldGet;
     break;
     case "ldjam.com":
-    jam = ldNewGet;
+    jam = ldjamGet;
     break;
     case "itch.io/jam":
     jam = itchGet;
@@ -137,10 +150,9 @@ function buildJamGame(jamType, config, i, body){
   var game = {};
   game.url = config.urls[i];
   game.title = jam.title($);
-  game.author = jam.author($);
-  game.authorLink = jam.authorLink($);
+  game.authors = jam.authors($);
   game.screenshots = jam.screenshots($);
-  if(jamType === "ludumdare.com") {
+  if(jamType === "ludumdare.com" || jamType === "ldjam.com") {
     game.description = jam.description($);
     game.type = jam.type($);
     game.ratings = jam.ratings($, totalEntriesJam, totalEntriesCompo);
@@ -188,4 +200,40 @@ function msgForType (url, supportedJams) {
 
 function niceTerminalOutput(i, configUrls, supportedJams){
   console.log("\n -- processing", (i + 1) + "/" + configUrls.length, "-- \n", configUrls[i], "\n", msgForType(configUrls[i], supportedJams));
+}
+
+
+function getPageHTML(url, fileName, callback){
+  checklist[fileName] = false;
+  (async() => {
+    var browser = await puppeteer.launch({ headless: true });
+    var page = await browser.newPage();
+    await page.goto(url, {});
+  
+    await page.waitFor(3000);
+    var html = await page.content();
+    fs.writeFile(fileName, html, () => {
+      console.log("saved", fileName);
+      checklist[fileName] = true;
+      if (checkListCheck(checklist)){
+        if(!callback){
+          console.log("okay, all done!");
+        }else{
+          callback();
+        }
+      }
+    });
+    browser.close();
+  })();
+}
+
+
+function checkListCheck(list) {
+  var result = true;
+  Object.keys(list).forEach( function (key) {
+    if (!list[key]){
+      result = false;
+    }
+  });
+  return result;
 }

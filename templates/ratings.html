@@ -103,9 +103,14 @@ http://red-team-design.com/dist/uploads/2011/11/css3-slick-progress-bars-demo.ht
         <a class="game-title" href='{{url}}' target='_blank'><strong>"{{title}}"</strong></a>
         {{/if}}
 
-        {{#if author}}
-        <p><a href="{{authorLink}}" target='_blank' class="type-by-author">{{#if type}}{{type}} by {{/if}}{{author}}</a></p>
+        {{#if type}}{{type}} entry by: {{/if}}
+
+        {{#if authors}}
+        {{#each authors}}
+          <a href="{{this.link}}" class="type-by-author">{{this.name}}</a>
+        {{/each}}
         {{/if}}
+
 
         {{#if ratings}}
         <div class="ratings">
@@ -132,5 +137,3 @@ http://red-team-design.com/dist/uploads/2011/11/css3-slick-progress-bars-demo.ht
     <p>This project is licensed under the MIT License, Fork it on <a href="https://github.com/AlexBezuska/Community-Game-Jam-Blogpost-Generator" target="_blank">GitHub</a> </p>
   </footer>
 </div>
-
-
