@@ -24,14 +24,14 @@ View the actual blog post made with this utility here: [LD37 at Warp Zone Louisv
 New template type for *Ludum Dare Ratings graphs* has been added, try it out by choosing the `ratings.html` template!
 ![](/tutorial/images/ratings.png)
 
-This project uses [request](https://www.npmjs.com/package/request), and [cheerio](https://www.npmjs.com/package/cheerio) to scrape data from game jam websites (currently only ludumdare.com).
+This project uses [puppeteer](https://www.npmjs.com/package/puppeteer), [request](https://www.npmjs.com/package/request), and [cheerio](https://www.npmjs.com/package/cheerio) to scrape data from game jam websites!
 
 ### Instructions:
 
 * Install node (instructions for your OS here: https://nodejs.org/en/)
 * Clone this repository or download the zip
 * Duplicate `config.sample.json` and name it `config.json`
-* Open `config.json` in your text editor and replace the `"jamURL"` and game `"urls"` your own (currently only ludumdare.com urls work). (see `config.json` help below for help)
+* Open `config.json` in your text editor and replace the `"jamURL"` and game `"urls"` your own (see `config.json` help below for help)
 * Navigate to this project in your terminal
 * Run the program using `node index.js`
 * You will notice a file added to the `./output` directory called `blog-post.html` (or whatever you named the `outputFile` in config)
@@ -48,14 +48,14 @@ When copying html into a blog post, WordPress loves to do things like insert `<b
 
 * **"jamUrl"** - (string) - Necessary for ratings template, pulls in total number of participants, example: `"http://ludumdare.com/compo/ludum-dare-37/"`
 
-* **"urls"** - (array of strings) - Currently this program only works with ludumdare.com game pages, mix and match jams if you like! Example: `"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387"` (Don't mix multiple jams with the ratings it won't work!)
+* **"urls"** - (string) - Example: `"http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=34387"` (All urls must be from the same jam)
 
 * **"ordering"** - (string)
     * `"default"` - Games will be presented in order of the urls in the array
     * `"alpha"` - Games will be in alphabetical order by title
 
 * **"template"** - (string) - Current blog options: `"./templates/bootstrap.html"`, `"./templates/minimal-styling.html"`, `"./templates/raw.html"`
-  And a *new ratings graph for ldjam:* `"./templates/ratings.html"`
+  And a *new ratings graph for ludumdare.com/ldjam.com:* `"./templates/ratings.html"`
 
 * **"outputFile"** - (string) - example: "./output/blog-post.html"
 
