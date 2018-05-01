@@ -34,32 +34,32 @@ requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFil
 function requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile) {
 
   // ldjam.com
-    if (config.jamUrl.indexOf("ldjam.com") > -1){
-      var games = [];
-      getPageHTML(config.jamUrl, "./temp/jampage.html", function(){
-        var htmlString = fs.readFileSync("./temp/jampage.html");
-        totalEntriesJam = ldjamGet.entries(cheerio.load(htmlString), "Jam");
-        console.log("Jam entries", totalEntriesJam);
+  if (config.jamUrl.indexOf("ldjam.com") > -1){
+    var games = [];
+    getPageHTML(config.jamUrl, "./temp/jampage.html", function(){
+      var htmlString = fs.readFileSync("./temp/jampage.html");
+      totalEntriesJam = ldjamGet.entries(cheerio.load(htmlString), "Jam");
+      console.log("Jam entries", totalEntriesJam);
 
-        totalEntriesCompo = ldjamGet.entries(cheerio.load(htmlString), "Compo");
-        console.log("Compo entries", totalEntriesCompo);
+      totalEntriesCompo = ldjamGet.entries(cheerio.load(htmlString), "Compo");
+      console.log("Compo entries", totalEntriesCompo);
 
-        for (var i = 0; i < config.urls.length; i++){
-          getPageHTML(config.urls[i], "./temp/"+ i +".html", function(){
-            for (var i = 0; i < config.urls.length; i++){
-              var body = fs.readFileSync("./temp/"+ i +".html");
-              games.push(buildJamGame("ldjam.com", config, i, body));
-              if (games.length == config.urls.length){
-                generateOutputFile(games, config);
-              }
+      for (var i = 0; i < config.urls.length; i++){
+        getPageHTML(config.urls[i], "./temp/"+ i +".html", function(){
+          for (var i = 0; i < config.urls.length; i++){
+            var body = fs.readFileSync("./temp/"+ i +".html");
+            games.push(buildJamGame("ldjam.com", config, i, body));
+            if (games.length == config.urls.length){
+              generateOutputFile(games, config);
             }
-          });
-        }
-      });
+          }
+        });
+      }
+    });
 
-    }
+  }
 
-// ludumdare.com
+  // ludumdare.com
   else if (config.jamUrl.indexOf("ludumdare.com") > -1){
     rp(config.jamUrl + "/?action=preview&etype=open")
     .then( function (htmlString) {
@@ -77,11 +77,11 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
   }
 
   // Global Game Jam
-    else if (config.jamUrl.indexOf("globalgamejam.org") > -1){
-      requestGamePages(config, requestGamePage, generateOutputFile);
-    }
+  else if (config.jamUrl.indexOf("globalgamejam.org") > -1){
+    requestGamePages(config, requestGamePage, generateOutputFile);
+  }
 
-// itch.io/jam
+  // itch.io/jam
   else if (config.jamUrl.indexOf("itch.io/jam/") > -1){
     rp(config.jamUrl)
     .then( function (htmlString) {
@@ -94,7 +94,7 @@ function requestJamMetadata (config, requestGamePages, requestGamePage, generate
     .catch(err => console.log);
   }
 
-// bad url
+  // bad url
   else {
     console.log(messages.jamFail);
   }
@@ -155,18 +155,23 @@ function buildJamGame(jamType, config, i, body){
   var game = {};
   game.url = config.urls[i];
   game.title = jam.title($);
-    if(jamType === "ludumdare.com" || jamType === "ldjam.com") {
   game.authors = jam.authors($);
   game.screenshots = jam.screenshots($);
+  game.description = jam.description($);
 
-    game.description = jam.description($);
+  if(jamType === "ludumdare.com" || jamType === "ldjam.com") {
     game.type = jam.type($);
     game.ratings = jam.ratings($, totalEntriesJam, totalEntriesCompo);
     game.comments = jam.commentCount($);
   }
+
   if(jamType === "itch.io/jam"){
     game.cover = jam.cover($);
     game.submissionTime = jam.submissionTime($);
+  }
+
+  if(jamType === "globalgamejam.org"){
+    game.featuredImage = jam.featuredImage($);
   }
   return game;
 }

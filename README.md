@@ -35,9 +35,9 @@ This project uses [puppeteer](https://www.npmjs.com/package/puppeteer), [request
 * Install node (instructions for your OS here: https://nodejs.org/en/)
 * Clone this repository or download the zip
 * Duplicate `config.sample.json` and name it `config.json`
-* Open `config.json` in your text editor and replace the `"jamURL"` and game `"urls"` your own (see `config.json` help below for help)
+* Open `config.json` in your text editor and replace the `"jamURL"`(not needed for Global Game Jam) and game `"urls"` your own (see `config.json` help below for help)
 * Navigate to this project in your terminal
-* Run the program using `node index.js`
+* Run the program using `npm start`
 * You will notice a file added to the `./output` directory called `blog-post.html` (or whatever you named the `outputFile` in config)
 * Open the output html in your browser to make sure everything is working
 * Copy html into your blog post (see note for WordPress users below if you are having strange formatting issues)

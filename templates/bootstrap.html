@@ -13,6 +13,11 @@
       <a href="{{this.link}}" class="type-by-author">{{this.name}}</a>
     {{/each}}
 
+    {{#if featuredImage}}
+        <a class="featuredImage" href="{{featuredImage}}" target="_blank">
+          <img src="{{featuredImage}}"  style="max-width: 150px; max-height: 150px;"/>
+        </a>
+    {{/if}}
 
     {{#if screenshots}}
       <div class="container-fluid">
@@ -26,9 +31,9 @@
       </div>
     {{/if}}
 
-    <!-- {{#if description}}
+    {{#if description}}
       <p class="description text-left">{{{description}}}</p>
-    {{/if}} -->
+    {{/if}}
 
     {{#if title}}
       <a class="btn btn-success" href="{{url}}" target='_blank' style="color: white !important;">Play {{title}}</a>
