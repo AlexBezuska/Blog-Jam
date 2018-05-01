@@ -1,5 +1,6 @@
 ## Community Game Jam Blogpost Generator
-(currently only ludumdare.com)
+Works with `ludumdare.com` and `ldjam.com`!
+
 ### by [Alex Bezuska](https://twitter.com/abezuska)
 
 ##### Project started: 2016.12.21
@@ -79,4 +80,3 @@ See also the list of [contributors](https://github.com/AlexBezuska/Ludum-Dare-en
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.TXT](LICENSE.TXT) file for details
-
