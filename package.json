@@ -1,14 +1,14 @@
 {
-  "name": "Ludum-Dare-entries-2-Blog",
-  "version": "0.1.0",
-  "description": "Scrape ludum dare site and create blog post from array of entrants",
+  "name": "blog-jam",
+  "version": "0.1.1",
+  "description": "Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post!",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:AlexBezuska/Ludum-Dare-entries-2-Blog.git"
+    "url": "git@github.com:AlexBezuska/Blog-Jam.git"
   },
   "author": "Alex Bezuska <abezuska@gmail.com> (http://alexbezuska.com/)",
   "license": "MIT",

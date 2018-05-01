@@ -1,4 +1,5 @@
-## Community Game Jam Blogpost Generator
+## Blog Jam
+Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post!
 Works with `ludumdare.com` and `ldjam.com`!
 
 ### by [Alex Bezuska](https://twitter.com/abezuska)
