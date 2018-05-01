@@ -1,6 +1,6 @@
 {
   "name": "blog-jam",
-  "version": "0.1.4",
+  "version": "0.3.3",
   "description": "Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post for you!",
   "main": "index.js",
   "scripts": {
