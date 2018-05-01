@@ -1,14 +1,19 @@
 {
   "name": "blog-jam",
-  "version": "0.1.1",
-  "description": "Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post!",
+  "version": "0.1.2",
+  "description": "Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post for you!",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "homepage": "https://github.com/AlexBezuska/Blog-Jam",
   "repository": {
     "type": "git",
     "url": "git@github.com:AlexBezuska/Blog-Jam.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/AlexBezuska/Blog-Jam/issues",
+    "email" : "abezuska@gmail.com"
   },
   "author": "Alex Bezuska <abezuska@gmail.com> (http://alexbezuska.com/)",
   "license": "MIT",

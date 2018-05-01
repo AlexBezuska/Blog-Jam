@@ -1,10 +1,14 @@
 ## Blog Jam
-Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post!
-Works with `ludumdare.com` and `ldjam.com`!
 
 ### by [Alex Bezuska](https://twitter.com/abezuska)
 
 ##### Project started: 2016.12.21
+
+Provide a list of game jam entries and Blog Jam will scrape the jam site and automatically create a blog post for you!
+
+*Works with **Ludum Dare** (both `ludumdare.com` and`ldjam.com`), and **Global Game Jam**!*
+
+
 
 This is a tool intended to help #gamedev communities and game dev spaces like ours ([Warp Zone Louisville](http://warpzonelouisville.com)) to easily show off the awesome games made by our community each time we participate in a game jam. The tool takes a provided list of game page urls and pulls out the title, author, screenshots, and description, and creates an html file that can be copied into a blog.
 
