@@ -8,11 +8,13 @@ var cheerio = require("cheerio");
 var handlebars = require("handlebars");
 
 var supportedJams = [
+  "ldjam.com",
   "ludumdare.com",
   "globalgamejam.org",
   "itch.io/jam"
 ];
 var ldGet = require("./lib/ldGet.js");
+var ldjamGet = require("./lib/ldjamGet.js");
 var itchGet = require("./lib/itchGet.js");
 var ggjGet = require("./lib/ggjGet.js");
 
@@ -28,8 +30,24 @@ var totalEntriesJam = undefined;
 requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile);
 
 function requestJamMetadata (config, requestGamePages, requestGamePage, generateOutputFile) {
+
+  // ldjam.com
+    if (config.jamUrl.indexOf("ldjam.com") > -1){
+      rp(config.jamUrl)
+      .then( function (htmlString) {
+        console.log(htmlString);
+        submissions = ldjamGet.submissions(cheerio.load(htmlString));
+        console.log("Jam entries", submissions);
+        //return rp(config.jamUrl);
+      })
+      // .then( function () {
+      //   requestGamePages(config, requestGamePage, generateOutputFile);
+      // })
+      .catch(err => console.log);
+    }
+
 // ludumdare.com
-  if (config.jamUrl.indexOf("ludumdare.com") > -1){
+  else if (config.jamUrl.indexOf("ludumdare.com") > -1){
     rp(config.jamUrl + "/?action=preview&etype=open")
     .then( function (htmlString) {
       totalEntriesJam = ldGet.entries(cheerio.load(htmlString), "Jam");
