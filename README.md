@@ -68,8 +68,8 @@ When copying html into a blog post, WordPress loves to do things like insert `<b
 ## Contributing
 
 Please do not hesitate to submit pull requests, I would love this to be a community effort. The game dev community is all about helping each other out and I want to offer this tool as a starting point to build something greater.
-Check the Github issues for ways to help that I already have on my radar, but here are a few important issues:
-* I would love help to add the capability to scrape other game jam sites to this project – Global Game Jam and Itch would be fantastic additions
+Check the [Github issues](https://github.com/AlexBezuska/Blog-Jam/issues) for ways to help that I already have on my radar, but here are a few important issues:
+* I would love help to add the capability to scrape other game jam sites to this project – `itch.io` and `jams.gamejolt.com` would be fantastic additions!
 
 ## Versioning
 
